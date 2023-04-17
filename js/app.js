@@ -49,9 +49,7 @@ function selectRandomDuckNumber() {
 }
 
 function renderDucks() {
-  let duck1 = selectRandomDuckNumber();
-  let duck2 = selectRandomDuckNumber();
-  let duck3 = selectRandomDuckNumber();
+
   let selectedImages = [];
 
   while (selectedImages.length < 3) {
