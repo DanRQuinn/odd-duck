@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 let duckArray = [];
 
@@ -10,68 +10,108 @@ let image2 = document.querySelector('section img:nth-child(2)');
 
 let image3 = document.querySelector('section img:nth-child(3)');
 
+let viewResultsBtn = document.querySelector('section ~ div');
+
 let counter = 0;
-let max counter = 25
+let maxCounter = 25;
 
-function Duck (name, fileExtention = 'jpg'){
-  this.name =name
-  this.src = `img/${name}.${fileExtention}`
-  this.views = 0
+function Duck(name, fileExtention = 'jpg') {
+  this.name = name;
+  this.src = `img/${name}.${fileExtention}`;
+  this.views = 0;
+  this.votes = 0;
 }
 
-let duck1 = new Duck ('duckname, png')
+let babyMob = new Duck('sweep', 'png');
+let R2Dbag = new Duck('bag');
+let bananaSlicer = new Duck('banana');
+let iTP = new Duck('bathroom');
+let toeBoots = new Duck('boots');
+let selfDiner = new Duck('breakfast');
+let ballGum = new Duck('bubbleGum');
+let badChair = new Duck('chair');
+let cthulhu = new Duck('cthulhu');
+let duckMuzzle = new Duck('dog-duck');
+let dMeat = new Duck('dragon');
+let pentensils = new Duck('pen');
+let dogBroom = new Duck('pet-sweep');
+let sliceCutter = new Duck('scissors');
+let sharkingBag = new Duck('shark');
+let hanSolo = new Duck('tauntaun');
+let uMeat = new Duck('unicorn');
+let badContainer = new Duck('water-can');
+let decanter = new Duck('wine-glass');
 
-duckArray.push(all the ducks)
+duckArray.push(babyMob, R2Dbag, bananaSlicer, iTP, toeBoots, selfDiner, ballGum, badChair, cthulhu, duckMuzzle, dMeat, pentensils, dogBroom, sliceCutter, sharkingBag, hanSolo, uMeat, badContainer, decanter);
 
-function selectRandomDuckNumber (){
-  return Math.floor(Math.random()) * allDucks.length
+function selectRandomDuckNumber() {
+  return Math.floor(Math.random() * duckArray.length);
 }
 
-function renderDucks{
+function renderDucks() {
   let duck1 = selectRandomDuckNumber();
   let duck2 = selectRandomDuckNumber();
   let duck3 = selectRandomDuckNumber();
-  while (duck1 === duck2){
-    duck2 = selectRandomDuckNumber();
+  let selectedImages = [];
+
+  while (selectedImages.length < 3) {
+    let randomIndex = selectRandomDuckNumber();
+    // let selectedImage = duckArray[randomIndex];
+    console.log(randomIndex);
+    if (!selectedImages.includes(randomIndex)) {
+      selectedImages.push(randomIndex);
+    }
   }
-  // use an array how do you find if an array includes something?
-  image1.src = duckArray[duck1].src;
-  image1.alt = duckArray[duck1].name;
-  duckArray[duck1].views++;
-  image1.src = duckArray[duck2].src;
-  image1.alt = duckArray[duck2].name;
-  duckArray[duck2].views++;
-  image1.src = duckArray[duck3].src;
-  image1.alt = duckArray[duck3].name;
-  duckArray[duck3].views++;
+
+  let imageOneIndex = selectedImages.shift();
+  let imageTwoIndex = selectedImages.shift();
+  let imageThreeIndex = selectedImages.shift();
+
+
+
+
+  image1.src = duckArray[imageOneIndex].src;
+  image1.alt = duckArray[imageOneIndex].name;
+  duckArray[imageOneIndex].views++;
+  image2.src = duckArray[imageTwoIndex].src;
+  image2.alt = duckArray[imageTwoIndex].name;
+  duckArray[imageTwoIndex].views++;
+  image3.src = duckArray[imageThreeIndex].src;
+  image3.alt = duckArray[imageThreeIndex].name;
+  duckArray[imageThreeIndex].views++;
 }
 
-function handleDuckClick(event){
+function handleDuckClick(event) {
+  counter++;
   console.log(event.target.alt);
-  let clickedDuck =event.target.alt;
-  for (let i = 0; i < duckArray.length; i++){
-    if (clickedDuck === duckArray[i].name{
+  let clickedDuck = event.target.alt;
+  for (let i = 0; i < duckArray.length; i++) {
+    if (clickedDuck === duckArray[i].name) {
       duckArray[i].votes++;
-      console.log duckArray
-    })
+      console.log(duckArray);
+    }
   }
-  if (counter < maxCounter){
+  if (counter < maxCounter) {
     renderDucks();
-  } else{
+  } else {
     // remove event listeners
     myContainer.removeEventListener('ckick', handleDuckClick);
-    viewResultsBtn.addEventListener('click', viewResults)
+    viewResultsBtn.addEventListener('click', viewResults);
   }
 }
 
-function viewResults(){
+function viewResults() {
   let ul = document.querySelector('ul');
-  for (let i = 0; i < duckArray.length; i++){
-    let li =document.createElement('li');
-    li.textContent = `${duckArray[i].name} had ${duckArray[i].views} views and ${duckArray}`
+  for (let i = 0; i < duckArray.length; i++) {
+    let li = document.createElement('li');
+    li.textContent = `${duckArray[i].name} had ${duckArray[i].views} views, and ${duckArray[i].votes} votes.`;
+    ul.appendChild(li);
+
   }
 }
 
 renderDucks();
 
-myContainer.addEventListener('ckick', handleDuckClick)
+myContainer.addEventListener('click', handleDuckClick);
+
+console.log(duckArray.votes);
