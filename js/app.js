@@ -2,6 +2,8 @@
 
 let duckArray = [];
 
+let indexArray = [];
+
 let myContainer = document.querySelector('section');
 
 let image1 = document.querySelector('section img:first-child');
@@ -49,18 +51,17 @@ function selectRandomDuckNumber() {
 }
 
 function renderDucks() {
-  let selectedImages = [];
-  while (selectedImages.length < 3) {
+  while (indexArray.length < 6) {
     let randomIndex = selectRandomDuckNumber();
     console.log(randomIndex);
-    if (!selectedImages.includes(randomIndex)) {
-      selectedImages.push(randomIndex);
+    if (!indexArray.includes(randomIndex)) {
+      indexArray.push(randomIndex);
     }
   }
 
-  let imageOneIndex = selectedImages.shift();
-  let imageTwoIndex = selectedImages.shift();
-  let imageThreeIndex = selectedImages.shift();
+  let imageOneIndex = indexArray.shift();
+  let imageTwoIndex = indexArray.shift();
+  let imageThreeIndex = indexArray.shift();
 
 
 

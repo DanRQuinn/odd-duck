@@ -18,6 +18,8 @@ Jared Clocarello
 
 ![Lighthouse Score](img/Screenshot%202023-04-17%20at%204.14.42%20PM.png)
 
+![Lighthouse Score](img/Screenshot%202023-04-18%20at%203.32.11%20PM.png)
+
 ### Reflections and Comments
 
 * Consider including the answers to your daily journal and submission questions here
