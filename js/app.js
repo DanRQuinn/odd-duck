@@ -2,6 +2,8 @@
 
 let duckArray = [];
 
+let indexArray = [];
+
 let myContainer = document.querySelector('section');
 
 let image1 = document.querySelector('section img:first-child');
@@ -49,23 +51,17 @@ function selectRandomDuckNumber() {
 }
 
 function renderDucks() {
-  let duck1 = selectRandomDuckNumber();
-  let duck2 = selectRandomDuckNumber();
-  let duck3 = selectRandomDuckNumber();
-  let selectedImages = [];
-
-  while (selectedImages.length < 3) {
+  while (indexArray.length < 6) {
     let randomIndex = selectRandomDuckNumber();
-    // let selectedImage = duckArray[randomIndex];
     console.log(randomIndex);
-    if (!selectedImages.includes(randomIndex)) {
-      selectedImages.push(randomIndex);
+    if (!indexArray.includes(randomIndex)) {
+      indexArray.push(randomIndex);
     }
   }
 
-  let imageOneIndex = selectedImages.shift();
-  let imageTwoIndex = selectedImages.shift();
-  let imageThreeIndex = selectedImages.shift();
+  let imageOneIndex = indexArray.shift();
+  let imageTwoIndex = indexArray.shift();
+  let imageThreeIndex = indexArray.shift();
 
 
 
@@ -95,23 +91,76 @@ function handleDuckClick(event) {
     renderDucks();
   } else {
     // remove event listeners
-    myContainer.removeEventListener('ckick', handleDuckClick);
+    myContainer.removeEventListener('click', handleDuckClick);
     viewResultsBtn.addEventListener('click', viewResults);
   }
 }
 
 function viewResults() {
-  let ul = document.querySelector('ul');
-  for (let i = 0; i < duckArray.length; i++) {
-    let li = document.createElement('li');
-    li.textContent = `${duckArray[i].name} had ${duckArray[i].views} views, and ${duckArray[i].votes} votes.`;
-    ul.appendChild(li);
-
-  }
+  renderChart();
+  viewResultsBtn.removeEventListener('click', viewResults);
 }
+
+
+function renderChart() {
+
+  console.log(duckArray.votes);
+
+  const ctx = document.getElementById('myChart');
+
+  let duckNames = [];
+  let duckVotes = [];
+  let duckViews = [];
+
+  for (let i = 0; i < duckArray.length; i++) {
+    console.log(duckArray[i]);
+
+    duckNames.push(duckArray[i].name);
+    duckVotes.push(duckArray[i].votes);
+    duckViews.push(duckArray[i].views);
+  }
+
+  let config = {
+    type: 'bar',
+    data: {
+      labels: duckNames,
+      datasets: [
+        {
+          label: 'Duck Votes',
+          data: duckVotes,
+          borderWidth: 1,
+          backgroundColor: [
+            'rgb(25, 117, 1, 1)'
+          ],
+          borderColor: [
+            'rgb(25, 117, 1, 1)'
+          ]
+        },
+        {
+          label: 'Duck Views',
+          data:duckViews ,
+          borderWidth: 1,
+          backgroundColor:[
+            'rgba(255, 170, 0, 1)',
+          ],
+          borderColor: [
+            'rgb(255, 170, 0, 1)',
+          ]
+        }
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  };
+  new Chart(ctx, config);
+}
+
 
 renderDucks();
 
 myContainer.addEventListener('click', handleDuckClick);
-
-console.log(duckArray.votes);
