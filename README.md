@@ -14,6 +14,8 @@ Jared Clocarello
 * [Duck Logo](img/ross-sokolovski-kCZSzqvIei4-unsplash.jpg)
 * Any Links you used as reference
 
+* [CodePen Home Pure CSS Button Hover Glow Effect](https://codepen.io/leandrosimoes/pen/VqZxaG)
+
 ### Lighthouse Accessibility Report Score
 
 ![Lighthouse Score](img/Screenshot%202023-04-17%20at%204.14.42%20PM.png)
