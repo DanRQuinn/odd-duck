@@ -80,6 +80,7 @@ section img:hover {
 }
 
 #chart {
+  
   grid-area: 4 / 4 / 6 / 6;
 }
 
